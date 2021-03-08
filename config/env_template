@@ -3,7 +3,7 @@ DJANGO_SECRET_KEY=your_key
 ALLOWED_HOSTS=your_host_ip_or_name
 
 # Postgres settings
-POSTGRES_DB=openbadge
+POSTGRES_DBNAME=openbadge
 POSTGRES_USER=openbadge
 POSTGRES_PASSWORD=your_postgres_password
 
