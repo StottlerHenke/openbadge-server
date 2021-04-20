@@ -11,7 +11,7 @@ class AppkeyRequired(permissions.BasePermission):
 
     def has_permission(self, request, view):
         token = request.META.get("HTTP_X_APPKEY")
-        return token is not None and token == settings.APP_KEY
+        return token is not None and token == settings.APPKEY
 
 class HubUuidRequired(permissions.BasePermission):
     """

@@ -189,7 +189,7 @@ AUTH_USER_MODEL = 'openbadge.OpenBadgeUser'
 #passwords.py stuff
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
-APP_KEY = env("APP_KEY")
+APPKEY = env("APPKEY")
 GOD_KEY = env("GOD_KEY")
 
 # Security! Better to use DNS for this task, but you can use redirect

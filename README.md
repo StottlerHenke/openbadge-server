@@ -4,13 +4,13 @@ The OpenBadge server now uses Docker for development and deployment. This docume
 You can find further examples in the Docker website.
 
 ## Configuration
-Configuration is done using a .env file. Create a new one by copying config/env_template to the root project dir and renaming it to .env. Then, edit the following fields:
+Configuration is done using a `.env` file. Create a new one by copying [`config/env.example`](config/env.example) to the root project dir and renaming it to `.env`. Then, edit the following fields:
 * POSTGRES_DBNAME - name of database schema (can leave as is)
 * POSTGRES_USER - name of postgres user to use (can leave as is)
 * POSTGRES_PASSWORD - unique password to use for the postgres user
 * DJANGO_SECRET_KEY - A secret key for a particular Django installation. This is used to provide cryptographic signing, and should be set to a unique, unpredictable value
 * ALLOWED_HOSTS - A list of strings representing the host/domain names that this Django site can serve. This is a security measure to prevent HTTP Host header attacks.
-* APP_KEY - a unique key used by the OpenBadge server to authenticate hubs
+* APPKEY - a unique key used by the OpenBadge server to authenticate hubs (needs to match `APPKEY` in your hub `.env` configuration file(s))
 
 Important! do not commit the .env to a github repository, but keep a copy somewhere safe.
 

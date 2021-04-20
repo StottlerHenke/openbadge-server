@@ -11,7 +11,7 @@ from itertools import groupby
 
 from openbadge import views
 from openbadge import models
-APP_KEY = settings.APP_KEY
+APPKEY = settings.APPKEY
 PROJECT_NAME = 'test-project'
 INPUT_FILE = "openbadge-server/openbadge/tests/testdata/{}_{}_entry.txt"
 HUB_NAME_PREFIX = "test_pls_delete_{}"
@@ -115,7 +115,7 @@ class TestDatafile(TestCase):
                     '/project_key/datafiles',
                     data,
                     HTTP_X_HUB_UUID=hub,
-                    HTTP_X_APPKEY=APP_KEY)
+                    HTTP_X_APPKEY=APPKEY)
         request.user = AnonymousUser()
         return request
 

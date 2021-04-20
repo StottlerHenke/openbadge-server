@@ -8,7 +8,7 @@ import glob
 
 from openbadge import views
 from openbadge import models
-APP_KEY = settings.APP_KEY
+APPKEY = settings.APPKEY
 PROJECT_DIR = os.path.expanduser("~/openbadge-server/{}")
 
 """

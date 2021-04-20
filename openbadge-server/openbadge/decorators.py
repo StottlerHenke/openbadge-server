@@ -73,7 +73,7 @@ def app_view(f):
     @wraps(f)
     def wrap(request, *args, **kwargs):
         token = request.META.get("HTTP_X_APPKEY")
-        if token != settings.APP_KEY:
+        if token != settings.APPKEY:
             return HttpResponseBadRequest()
 
         return f(request, *args, **kwargs)
