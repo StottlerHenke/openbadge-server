@@ -7,13 +7,15 @@ if __name__ == '__main__':
 
     try:
         from django.core.management import execute_from_command_line
-    except ImportError:
+    except ImportError as error:
+        print(error)
         # The above import may fail for some other reason. Ensure that the
         # issue is really that Django is missing to avoid masking other
         # exceptions on Python 2.
         try:
             import django  # noqa
-        except ImportError:
+        except ImportError as djangoerror:
+            print(djangoerror)
             raise ImportError(
                 "Couldn't import Django. Are you sure it's installed and "
                 "available on your PYTHONPATH environment variable? Did you "
