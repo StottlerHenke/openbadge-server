@@ -11,6 +11,11 @@ then
     exit 1
 fi
 
+# the official postgres image uses the value of POSTGRES_USER if not set explictly.
+if [ -z "${POSTGRES_DB}" ]; then
+    export POSTGRES_DB=${POSTGRES_USER}
+fi
+
 # export the postgres password so that subsequent commands don't ask for it
 export PGPASSWORD=$POSTGRES_PASSWORD
 
@@ -41,16 +46,16 @@ echo "-------------------------"
 # delete the db
 # deleting the db can fail. Spit out a comment if this happens but continue since the db
 # is created in the next step
-echo "deleting old database $POSTGRES_USER"
-if dropdb -h postgres -U $POSTGRES_USER $POSTGRES_USER
-then echo "deleted $POSTGRES_USER database"
-else echo "database $POSTGRES_USER does not exist, continue"
+echo "deleting old database $POSTGRES_DB"
+if dropdb -h postgres -U $POSTGRES_USER $POSTGRES_DB
+then echo "deleted $POSTGRES_DB database"
+else echo "database $POSTGRES_DB does not exist, continue"
 fi
 
 # create a new database
-echo "creating new database $POSTGRES_USER"
-createdb -h postgres -U $POSTGRES_USER $POSTGRES_USER -O $POSTGRES_USER
+echo "creating new database $POSTGRES_DB"
+createdb -h postgres -U $POSTGRES_USER $POSTGRES_DB -O $POSTGRES_USER
 
 # restore the database
-echo "restoring database $POSTGRES_USER"
+echo "restoring database $POSTGRES_DB"
 gunzip -c $BACKUPFILE | psql -h postgres -U $POSTGRES_USER

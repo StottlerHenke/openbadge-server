@@ -5,7 +5,7 @@ You can find further examples in the Docker website.
 
 ## Configuration
 Configuration is done using a `.env` file. Create a new one by copying [`config/env.example`](config/env.example) to the root project dir and renaming it to `.env`. Then, edit the following fields:
-* POSTGRES_DBNAME - name of database schema (can leave as is)
+* POSTGRES_DB - name of database schema (can leave as is)
 * POSTGRES_USER - name of postgres user to use (can leave as is)
 * POSTGRES_PASSWORD - unique password to use for the postgres user
 * DJANGO_SECRET_KEY - A secret key for a particular Django installation. This is used to provide cryptographic signing, and should be set to a unique, unpredictable value

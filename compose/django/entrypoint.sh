@@ -11,9 +11,13 @@ cmd="$@"
 if [ -z "${POSTGRES_USER}" ]; then
     export POSTGRES_USER=postgres
 fi
+# the official postgres image uses the value of POSTGRES_USER if not set explictly.
+if [ -z "${POSTGRES_DB}" ]; then
+    export POSTGRES_DB=${POSTGRES_USER}
+fi
 export POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
-export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_USER
+export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB
 
 
 function postgres_ready(){
@@ -21,7 +25,7 @@ python << END
 import sys
 import psycopg2
 try:
-    conn = psycopg2.connect(dbname="$POSTGRES_DBNAME", user="$POSTGRES_USER", password="$POSTGRES_PASSWORD", host="postgres")
+    conn = psycopg2.connect(dbname="$POSTGRES_DB", user="$POSTGRES_USER", password="$POSTGRES_PASSWORD", host="postgres")
 except psycopg2.OperationalError as error:
     print "\tError - ", error
     sys.exit(-1)
